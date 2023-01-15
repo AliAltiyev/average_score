@@ -5,5 +5,5 @@ class AppConstants {
   static const MaterialColor mainColor = Colors.indigo;
   static const String appBarText = "Average Calculator";
   static final TextStyle mainAppFont =
-      GoogleFonts.quicksand(fontSize: 23, fontWeight: FontWeight.w600);
+      GoogleFonts.asapCondensed(fontSize: 23, fontWeight: FontWeight.w600,color: mainColor);
 }

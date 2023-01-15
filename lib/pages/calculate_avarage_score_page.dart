@@ -14,12 +14,16 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppConstants.mainColor,
+        elevation: 0,
         title: Text(
           AppConstants.appBarText,
           style: AppConstants.mainAppFont,
         ),
       ),
-      body: Center(
+      body: const Center(
         child: Text("Calculate Average score"),
       ),
     );
