@@ -1,4 +1,5 @@
 import 'package:average_score/constants/constants.dart';
+import 'package:average_score/data/drop_down_data.dart';
 import 'package:average_score/widgets/lessons_count_witget.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class CalculateAverageScorePage extends StatefulWidget {
 
 class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
   final formKey = GlobalKey<FormState>();
+  double dropDownValue = 5.0;
 
   @override
   Widget build(BuildContext context) {
@@ -56,23 +58,36 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
   Widget _createForm() {
     return Expanded(
       flex: 2,
-        child: Column(
-            children: [
-        Form(
-        key : formKey,
-        child: TextFormField(
-            decoration: InputDecoration(
-            label: const Text("Score"),
-        fillColor: AppConstants.mainColor.withOpacity(0.1),
-        border: OutlineInputBorder(
-            borderSide: const BorderSide(color: AppConstants.mainColor),
-            borderRadius: BorderRadius.circular(16))),
-    )),
-    const Icon(Icons.access_alarm_rounded),
-    const Icon(Icons.access_alarm_rounded),
-    const Icon(Icons.access_alarm_rounded),
-    ],
-    ),
+      child: Column(
+        children: [
+          Form(
+              key: formKey,
+              child: TextFormField(
+                decoration: InputDecoration(
+                    label: const Text("Score"),
+                    fillColor: AppConstants.mainColor.withOpacity(0.1),
+                    border: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: AppConstants.mainColor),
+                        borderRadius: BorderRadius.circular(16))),
+              )),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+            child: DropdownButton<double>(
+              value: dropDownValue,
+              elevation: 16,
+              items: DropDownData.createDropDownItem(),
+              onChanged: (double? value) {
+                setState(() {
+                  dropDownValue = value!;
+                  debugPrint(dropDownValue.toString());
+                });
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }
