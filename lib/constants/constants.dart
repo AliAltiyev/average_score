@@ -9,4 +9,8 @@ class AppConstants {
 
   static final TextStyle lessonsTextStyle =
   GoogleFonts.acme(fontSize: 20, fontWeight: FontWeight.w900,color: mainColor);
+
+
+  static final TextStyle dropDownItemStyle =
+  GoogleFonts.asap(fontSize: 16, fontWeight: FontWeight.w900,color: Colors.white);
 }

@@ -1,3 +1,4 @@
+import 'package:average_score/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class DropDownData {
@@ -40,7 +41,7 @@ class DropDownData {
   static List<DropdownMenuItem<double>> createDropDownItem() {
     return scoreRangeList
         .map((value) => DropdownMenuItem(
-            value: convertScoresToNumber(value), child: Text(value.toString())))
+            value: convertScoresToNumber(value), child: Text(value.toString(),style: AppConstants.dropDownItemStyle,)))
         .toList();
   }
 }

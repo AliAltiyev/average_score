@@ -59,6 +59,8 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
     return Expanded(
       flex: 2,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Form(
               key: formKey,
@@ -71,19 +73,26 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
                             const BorderSide(color: AppConstants.mainColor),
                         borderRadius: BorderRadius.circular(16))),
               )),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-            child: DropdownButton<double>(
-              value: dropDownValue,
-              elevation: 16,
-              items: DropDownData.createDropDownItem(),
-              onChanged: (double? value) {
-                setState(() {
-                  dropDownValue = value!;
-                  debugPrint(dropDownValue.toString());
-                });
-              },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
+
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),color: AppConstants.mainColor),
+              child: DropdownButton<double>(
+              underline: Container(),
+                dropdownColor: AppConstants.mainColor.shade900,
+                iconEnabledColor: Colors.white,
+                value: dropDownValue,
+                elevation: 16,
+                items: DropDownData.createDropDownItem(),
+                onChanged: (double? value) {
+                  setState(() {
+                    dropDownValue = value!;
+                    debugPrint(dropDownValue.toString());
+                  });
+                },
+              ),
             ),
           )
         ],
