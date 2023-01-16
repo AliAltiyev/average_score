@@ -2,9 +2,38 @@ import 'package:average_score/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class DropDownData {
-  static  List<String> scoreRangeList =
-   ["AA", "BA", "BB", "CB", "CC", "DC","DD","FD","FF","GF","GG","HG","HH"];
+  static List<String> scoreRangeList = [
+    "AA",
+    "BA",
+    "BB",
+    "CB",
+    "CC",
+    "DC",
+    "DD",
+    "FD",
+    "FF",
+    "GF",
+    "GG",
+    "HG",
+    "HH"
+  ];
 
+  static List<DropdownMenuItem<double>> createScoreNumbersList() {
+    List<double> scoreNumbers = [];
+
+    for (double i = 4; i <= 10; i = i + 0.5) {
+      scoreNumbers.add(i);
+    }
+    return scoreNumbers
+        .map((value) => DropdownMenuItem(
+              value: value,
+              child: Text(
+                value.toString(),
+                style: AppConstants.dropDownItemStyle,
+              ),
+            ))
+        .toList();
+  }
 
   static double convertScoresToNumber(String scores) {
     switch (scores) {

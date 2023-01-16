@@ -13,7 +13,8 @@ class CalculateAverageScorePage extends StatefulWidget {
 
 class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
   final formKey = GlobalKey<FormState>();
-  double dropDownValue = 5.0;
+
+  double dropDownValue = 4;
 
   @override
   Widget build(BuildContext context) {
@@ -73,27 +74,55 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
                             const BorderSide(color: AppConstants.mainColor),
                         borderRadius: BorderRadius.circular(16))),
               )),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
-
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),color: AppConstants.mainColor),
-              child: DropdownButton<double>(
-              underline: Container(),
-                dropdownColor: AppConstants.mainColor.shade900,
-                iconEnabledColor: Colors.white,
-                value: dropDownValue,
-                elevation: 16,
-                items: DropDownData.createDropDownItem(),
-                onChanged: (double? value) {
-                  setState(() {
-                    dropDownValue = value!;
-                    debugPrint(dropDownValue.toString());
-                  });
-                },
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: AppConstants.mainColor),
+                  child: DropdownButton<double>(
+                    underline: Container(),
+                    dropdownColor: AppConstants.mainColor.shade900,
+                    iconEnabledColor: Colors.white,
+                    value: dropDownValue,
+                    elevation: 16,
+                    items: DropDownData.createDropDownItem(),
+                    onChanged: (double? value) {
+                      setState(() {
+                        dropDownValue = value!;
+                      });
+                    },
+                  ),
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: AppConstants.mainColor),
+                  child: DropdownButton<double>(
+                    underline: Container(),
+                    dropdownColor: AppConstants.mainColor.shade900,
+                    iconEnabledColor: Colors.white,
+                    value: dropDownValue,
+                    elevation: 16,
+                    items: DropDownData.createScoreNumbersList(),
+                    onChanged: (value) {
+                      setState(() {
+                        dropDownValue = value!;
+                      });
+                    },
+                  ),
+                ),
+              )
+            ],
           )
         ],
       ),
