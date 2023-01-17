@@ -1,6 +1,8 @@
 import 'package:average_score/constants/constants.dart';
 import 'package:average_score/data/drop_down_data.dart';
+import 'package:average_score/model/lesson.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/lessons_count_witget.dart';
 
@@ -31,12 +33,58 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
           style: AppConstants.mainAppFont,
         ),
       ),
-      body: Column(
-        children: [
-          const LessonsCountWidget(score: 10.9, lessons: 2),
-          lessonDropDownMenu(),
-          _scoreDropDownMenu()
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const LessonsCountWidget(score: 10.9, lessons: 2),
+            lessonDropDownMenu(),
+            _scoreDropDownMenu(),
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {});
+                  saveScore();
+                },
+                child: Text("Сохранить")),
+            SizedBox(height: 40,),
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+              ),
+              child: Expanded(
+                child: SizedBox(
+                  child: ListView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    itemExtent: 80,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          tileColor: setScoreColor(
+                              Data.lessonsList[index].numberValue) ,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16))),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 24),
+                          title: Text(Data.lessonsList[index].lessonName,style: TextStyle(color: Colors.white),),
+                          leading: Text(
+                            Data.lessonsList[index].numberValue.toString(),
+                            style: TextStyle(
+                              color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w700,
+
+                          ),
+                        ),
+                      ));
+                    },
+                    itemCount: Data.lessonsList.length,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -91,6 +139,39 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
         ),
       ),
     );
+  }
+
+  void saveScore() {
+    final lesson = Lesson(lessonNames, scoreValue);
+    Data.addLessons(lesson);
+  }
+
+  Color setScoreColor(int score) {
+    switch (score) {
+      case 1:
+        return Colors.red.shade900;
+      case 2:
+        return Colors.red.shade600;
+
+      case 3:
+        return Colors.red.shade400;
+      case 4:
+        return Colors.deepPurple;
+      case 5:
+        return Colors.deepPurple.shade700;
+      case 6:
+        return Colors.deepPurple.shade900;
+
+      case 7:
+        return Colors.lightGreenAccent;
+      case 8:
+        return Colors.lightGreen;
+      case 9:
+        return Colors.green;
+      case 10:
+        return Colors.green.shade900;
+    }
+    return Colors.black;
   }
 
 // checkLessonValidation() {

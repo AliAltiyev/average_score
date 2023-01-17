@@ -1,12 +1,14 @@
 class Lesson {
   String  lessonName;
-  double numberValue;
-  String lessonNames;
+  int numberValue;
 
-  Lesson(this.lessonName, this.numberValue, this.lessonNames);
+  Lesson(
+    this.lessonName,
+    this.numberValue,
+  );
 
   @override
   String toString() {
-    return 'Lesson{alphabitValue: $lessonName, numberValue: $numberValue, lessonName: $lessonNames}';
+    return 'Lesson{alphabitValue: $lessonName, numberValue: $numberValue,';
   }
 }
