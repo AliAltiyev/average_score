@@ -2,7 +2,6 @@ import 'package:average_score/constants/constants.dart';
 import 'package:average_score/data/drop_down_data.dart';
 import 'package:average_score/model/lesson.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/lessons_count_witget.dart';
 
@@ -19,6 +18,7 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
 
   String lessonNames = "Белорусский язык";
   int scoreValue = 10;
+  List<Lesson> lessonList = Data.lessonsList;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,9 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const LessonsCountWidget(score: 10.9, lessons: 2),
+            LessonsCountWidget(
+                score: Data.calculateAverage(),
+                lessons: Data.lessonsList.length),
             lessonDropDownMenu(),
             _scoreDropDownMenu(),
             ElevatedButton(
@@ -44,45 +46,56 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
                   setState(() {});
                   saveScore();
                 },
-                child: Text("Сохранить")),
-            SizedBox(height: 40,),
+                child: const Text("Сохранить")),
+            const SizedBox(
+              height: 40,
+            ),
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(16)),
               ),
-              child: Expanded(
-                child: SizedBox(
-                  child: ListView.builder(
-                    primary: false,
-                    shrinkWrap: true,
-                    itemExtent: 80,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
+              child: lessonList.isNotEmpty?  ListView.builder(
+                primary: false,
+                shrinkWrap: true,
+                itemExtent: 80,
+                itemBuilder: (BuildContext context, int index) {
+                  return Dismissible(
+                    key: UniqueKey(),
+                    behavior: HitTestBehavior.deferToChild,
+                    direction: DismissDirection.startToEnd,
+                    onDismissed: (value) {
+                      setState(() {
+                        lessonList.removeAt(index);
+                      });
+                    },
+                    child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
                           tileColor: setScoreColor(
-                              Data.lessonsList[index].numberValue) ,
-                          shape: RoundedRectangleBorder(
+                              Data.lessonsList[index].numberValue),
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(16))),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 24),
-                          title: Text(Data.lessonsList[index].lessonName,style: TextStyle(color: Colors.white),),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 24),
+                          title: Text(
+                            Data.lessonsList[index].lessonName,
+                            style: const TextStyle(color: Colors.white),
+                          ),
                           leading: Text(
                             Data.lessonsList[index].numberValue.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                      ));
-                    },
-                    itemCount: Data.lessonsList.length,
-                  ),
-                ),
-              ),
-            )
+                        )),
+                  );
+                },
+                itemCount: Data.lessonsList.length,
+              ) : Text("Добавьте предмет",style: AppConstants.mainAppFont,)
+            ),
           ],
         ),
       ),
