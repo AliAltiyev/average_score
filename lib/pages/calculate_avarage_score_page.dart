@@ -1,5 +1,6 @@
 import 'package:average_score/constants/constants.dart';
 import 'package:average_score/data/drop_down_data.dart';
+import 'package:average_score/model/lesson.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/lessons_count_witget.dart';
@@ -31,12 +32,50 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
           style: AppConstants.mainAppFont,
         ),
       ),
-      body: Column(
-        children: [
-          const LessonsCountWidget(score: 10.9, lessons: 2),
-          lessonDropDownMenu(),
-          _scoreDropDownMenu()
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const LessonsCountWidget(score: 10.9, lessons: 2),
+            lessonDropDownMenu(),
+            _scoreDropDownMenu(),
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {});
+                  saveScore();
+                },
+                child: Text("Сохранить")),
+            SizedBox(height: 40,),
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+              ),
+              child: Expanded(
+                child: SizedBox(
+                  child: ListView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    itemExtent: 80,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          shape: RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.indigo),
+                              borderRadius: BorderRadius.all(Radius.circular(16))),
+                          contentPadding: EdgeInsets.all(1),
+                          title: Text(Data.lessonsList[index].lessonName),
+                          leading:
+                              Text(Data.lessonsList[index].numberValue.toString()),
+                        ),
+                      );
+                    },
+                    itemCount: Data.lessonsList.length,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -91,6 +130,11 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
         ),
       ),
     );
+  }
+
+  void saveScore() {
+    final lesson = Lesson(lessonNames, scoreValue);
+    Data.addLessons(lesson);
   }
 
 // checkLessonValidation() {
