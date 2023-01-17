@@ -11,14 +11,25 @@ class LessonsCountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(lessons > 0 ? "Lessons $lessons" : " ${0} Lesson",
-            style: AppConstants.lessonsTextStyle),
-        Text(score > 0 ? "Score $score" : "Enter Score",
-          style: AppConstants.mainAppFont,),
-        const Text("Average"),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Text(lessons > 0 ? "Lessons $lessons" : " ${0} Lesson",
+                style: AppConstants.lessonsTextStyle),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Text(
+              score > 0 ? "Score $score" : "Enter Score",
+              style: AppConstants.mainAppFont,
+            ),
+          ),
+          const Text("Average"),
+        ],
+      ),
     );
   }
 }
