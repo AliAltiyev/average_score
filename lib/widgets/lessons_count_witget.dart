@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class LessonsCountWidget extends StatelessWidget {
 
-  final double score;
+  final num score;
   final int lessons;
 
   const LessonsCountWidget(
@@ -23,7 +23,7 @@ class LessonsCountWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: Text(
-              score > 0 ? "Score $score" : "Enter Score",
+              score > 0 ? "Score ${score.toStringAsFixed(2)}" : "Enter Score",
               style: AppConstants.mainAppFont,
             ),
           ),

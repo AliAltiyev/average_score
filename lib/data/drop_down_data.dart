@@ -7,7 +7,6 @@ class Data {
     "Белорусский язык",
     "Белорусская литература",
     "Русский язык",
-    "Русский язык",
     "Русская литература",
     "Иностранный язык",
     "Математика",
@@ -58,5 +57,17 @@ class Data {
 
   static void addLessons(Lesson lesson) {
     lessonsList.add(lesson);
+  }
+
+  static num calculateAverage() {
+    num number = 0;
+
+    if(lessonsList.isNotEmpty){
+      number = lessonsList
+          .map((e) => e.numberValue)
+          .reduce((value, element) => element + value);
+    }
+    var average = number / lessonsList.length;
+    return average;
   }
 }
