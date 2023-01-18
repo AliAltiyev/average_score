@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import '../widgets/lessons_count_witget.dart';
 
 class CalculateAverageScorePage extends StatefulWidget {
-  const CalculateAverageScorePage({Key? key}) : super(key: key);
+  List<Lesson> lessonsList = [];
+
+  CalculateAverageScorePage({required this.lessonsList, Key? key})
+      : super(key: key);
 
   @override
   State<CalculateAverageScorePage> createState() =>
@@ -23,6 +26,31 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  widget.lessonsList.clear();
+                });
+              },
+              icon: Icon(Icons.delete))
+        ],
+        leading: InkWell(
+            onTap: () {
+              Scaffold.of(context).openDrawer();
+            },
+            child: Icon(Icons.menu_open_outlined)),
+        iconTheme: const IconThemeData(color: Colors.indigo),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppConstants.mainColor,
+        elevation: 0,
+        title: Text(
+          AppConstants.appBarText,
+          style: AppConstants.mainAppFont,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
