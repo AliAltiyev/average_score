@@ -21,6 +21,17 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
+            leadingWidth: 40,
+            leading: InkWell(
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+              child: const CircleAvatar(
+                radius: 16,
+                backgroundImage:
+                    NetworkImage("https://pixy.org/src/10/109515.jpg"),
+              ),
+            ),
             iconTheme: const IconThemeData(color: Colors.indigo),
             centerTitle: true,
             backgroundColor: Colors.transparent,
