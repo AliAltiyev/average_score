@@ -1,5 +1,7 @@
+
 import 'package:average_score/constants/constants.dart';
 import 'package:average_score/pages/calculate_avarage_score_page.dart';
+import 'package:average_score/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,12 +14,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: AppConstants.appBarText,
-        theme: ThemeData(
-          primarySwatch: AppConstants.mainColor,
-        ),
-        home: const CalculateAverageScorePage());
+      debugShowCheckedModeBanner: false,
+      title: AppConstants.appBarText,
+      theme: ThemeData(
+        primarySwatch: AppConstants.mainColor,
+      ),
+      home: Scaffold(
+          appBar: AppBar(
+            iconTheme: const IconThemeData(color: Colors.indigo),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            foregroundColor: AppConstants.mainColor,
+            elevation: 0,
+            title: Text(
+              AppConstants.appBarText,
+              style: AppConstants.mainAppFont,
+            ),
+          ),
+          drawer: const ApplicationDrawer(),
+          body: const CalculateAverageScorePage()),
+    );
   }
 }
 
