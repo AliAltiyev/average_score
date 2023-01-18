@@ -23,16 +23,6 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        foregroundColor: AppConstants.mainColor,
-        elevation: 0,
-        title: Text(
-          AppConstants.appBarText,
-          style: AppConstants.mainAppFont,
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
