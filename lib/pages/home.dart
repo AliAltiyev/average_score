@@ -5,18 +5,16 @@ import 'package:flutter/material.dart';
 
 import '../widgets/lessons_count_witget.dart';
 
-class CalculateAverageScorePage extends StatefulWidget {
+class Home extends StatefulWidget {
   List<Lesson> lessonsList = [];
 
-  CalculateAverageScorePage({required this.lessonsList, Key? key})
-      : super(key: key);
+  Home({required this.lessonsList, Key? key}) : super(key: key);
 
   @override
-  State<CalculateAverageScorePage> createState() =>
-      _CalculateAverageScorePageState();
+  State<Home> createState() => _HomeState();
 }
 
-class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
+class _HomeState extends State<Home> {
   final formKey = GlobalKey<FormState>();
 
   String lessonNames = "Белорусский язык";
@@ -26,31 +24,6 @@ class _CalculateAverageScorePageState extends State<CalculateAverageScorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  widget.lessonsList.clear();
-                });
-              },
-              icon: Icon(Icons.delete))
-        ],
-        leading: InkWell(
-            onTap: () {
-              Scaffold.of(context).openDrawer();
-            },
-            child: Icon(Icons.menu_open_outlined)),
-        iconTheme: const IconThemeData(color: Colors.indigo),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        foregroundColor: AppConstants.mainColor,
-        elevation: 0,
-        title: Text(
-          AppConstants.appBarText,
-          style: AppConstants.mainAppFont,
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
