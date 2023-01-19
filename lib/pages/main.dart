@@ -20,6 +20,9 @@ class _MainScreenState extends State<MainScreen> {
 
   void changeNavigationBarIndex(int index) {
     if (index == _selectedPageIndex) return;
+    if (_selectedPageIndex == 1) {
+      MaterialPageRoute(builder: (context) => TimeTableTab());
+    }
     setState(() {
       _selectedPageIndex = index;
     });
@@ -27,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final pages = <Widget>[
     Home(lessonsList: Data.lessonsList),
-    const TimeTable(),
+    const TimeTableTab(),
     const News(),
     const Profile()
   ];

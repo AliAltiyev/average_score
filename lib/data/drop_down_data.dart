@@ -3,7 +3,7 @@ import 'package:average_score/model/lesson.dart';
 import 'package:flutter/material.dart';
 
 class Data {
-  static List<String> scoreRangeList = [
+  static List<String> lessonNames = [
     "Белорусский язык",
     "Белорусская литература",
     "Русский язык",
@@ -26,7 +26,7 @@ class Data {
   ];
 
   static List<DropdownMenuItem<String>> createDropDownItem() {
-    return scoreRangeList
+    return lessonNames
         .map((value) => DropdownMenuItem(
             value: value,
             child: Text(
