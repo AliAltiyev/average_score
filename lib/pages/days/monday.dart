@@ -73,7 +73,7 @@ class _MondayState extends State<Monday> {
                       tileColor:checkBoxState ? Colors.green  : Colors.red,
                       leading: const Icon(Icons.timer,color: Colors.white,),
                       subtitle: Text(
-                        mondayLessonList[index].time,
+                     checkLessonTime(index),
                         style: const TextStyle(
                             color: Colors.white, fontSize: 15),
                       ),
@@ -91,4 +91,23 @@ class _MondayState extends State<Monday> {
       ),
     ]);
   }
+
+  String checkLessonTime(int index){
+    switch(index) {
+      case 0:
+        return "8:30 - 9:15";
+      case 1:
+        return "9:30 - 10:15";
+      case 2:
+        return "10:30 - 11:15";
+      case 3:
+        return "11:30 - 12:15";
+      case 4:
+        return "12:30 - 13:15";
+      case 5:
+        return "13:30 - 14:15";
+    }
+    return "Time not defined";
+  }
+
 }
